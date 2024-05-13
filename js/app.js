@@ -41,3 +41,12 @@ function embaralha(lista) {
             [lista[indiceAleatorio], lista[indice - 1]];
     }
 }
+
+function reiniciar(){
+    let sorteio = document.getElementById('lista-sorteio')
+    let lista = document.getElementById('lista-amigos');
+
+    lista.textContent = '';
+    sorteio.innerHTML = '';
+    amigos = []
+}
