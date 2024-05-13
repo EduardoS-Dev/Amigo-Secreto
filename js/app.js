@@ -43,10 +43,7 @@ function embaralha(lista) {
 }
 
 function reiniciar(){
-    let sorteio = document.getElementById('lista-sorteio')
-    let lista = document.getElementById('lista-amigos');
-
-    lista.textContent = '';
-    sorteio.innerHTML = '';
-    amigos = []
+    amigos = [];
+    document.getElementById('lista-sorteio').innerHTML = '';
+    document.getElementById('lista-amigos').innerHTML = '';
 }
