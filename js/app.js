@@ -4,30 +4,42 @@ function adicionar(){
     let amigo = document.getElementById('nome-amigo');
     let lista = document.getElementById('lista-amigos');
 
-    if (lista.textContent == '') {
-        lista.textContent = amigo.value;
+    if(amigo.value == ''){
+        alert('Digite o nome de um amigo')
     } else {
-        lista.textContent = lista.textContent + ', ' + amigo.value;
+        if(amigos.includes(amigo.value)){
+            alert(`${amigo.value} já está no sorteio`)
+        } else {
+            if (lista.textContent == '') {
+                lista.textContent = amigo.value;
+                amigos.push(amigo.value);
+            } else {
+                lista.textContent = lista.textContent + ', ' + amigo.value;
+                amigos.push(amigo.value);
+            }
+        }
     }
-
-    amigos.push(amigo.value)
 
     amigo.value = '';
 }
 
 function sortear(){
     embaralha(amigos)
-    let sorteio = document.getElementById('lista-sorteio')
 
-    for(let i = 0; i < amigos.length; i++){
+    if(amigos.length > 1){
+        let sorteio = document.getElementById('lista-sorteio')
 
-        if(i == amigos.length - 1) {
-            sorteio.innerHTML += `${amigos[i]} --> ${amigos[0]}<br>` 
-        } else {
-            sorteio.innerHTML += `${amigos[i]} --> ${amigos[i + 1]}<br>` 
+        for(let i = 0; i < amigos.length; i++){
+
+            if(i == amigos.length - 1) {
+                sorteio.innerHTML += `${amigos[i]} --> ${amigos[0]}<br>` 
+            } else {
+                sorteio.innerHTML += `${amigos[i]} --> ${amigos[i + 1]}<br>` 
+            }
         }
+    } else {
+        alert('Por favor adiciona mais amigos para brincar.')  
     }
-    
 }
 
 function embaralha(lista) {
