@@ -5,19 +5,22 @@ function adicionar(){
     let lista = document.getElementById('lista-amigos');
 
     if(amigo.value == ''){
-        alert('Digite o nome de um amigo')
+        alert('Digite o nome de um amigo');
+        return
+    }
+
+    if(amigos.includes(amigo.value)){
+        alert(`${amigo.value} já está na lista`)
+        amigo.value = '';
+        return
+    }
+
+    amigos.push(amigo.value);
+
+    if (lista.textContent == '') {
+        lista.textContent = amigo.value;        
     } else {
-        if(amigos.includes(amigo.value)){
-            alert(`${amigo.value} já está no sorteio`)
-        } else {
-            if (lista.textContent == '') {
-                lista.textContent = amigo.value;
-                amigos.push(amigo.value);
-            } else {
-                lista.textContent = lista.textContent + ', ' + amigo.value;
-                amigos.push(amigo.value);
-            }
-        }
+        lista.textContent = lista.textContent + ', ' + amigo.value;
     }
 
     amigo.value = '';
@@ -27,21 +30,22 @@ function adicionar(){
 }
 
 function sortear(){
+    if(amigos.length < 4){
+        alert('Adicione pelo menos 4 amigos')
+        return;
+    }
+
     embaralha(amigos)
 
-    if(amigos.length > 1){
-        let sorteio = document.getElementById('lista-sorteio')
+    let sorteio = document.getElementById('lista-sorteio')
 
-        for(let i = 0; i < amigos.length; i++){
+    for(let i = 0; i < amigos.length; i++){
 
-            if(i == amigos.length - 1) {
-                sorteio.innerHTML += `${amigos[i]} --> ${amigos[0]}<br>` 
-            } else {
-                sorteio.innerHTML += `${amigos[i]} --> ${amigos[i + 1]}<br>` 
-            }
+        if(i == amigos.length - 1) {
+            sorteio.innerHTML += `${amigos[i]} --> ${amigos[0]}<br>` 
+        } else {
+            sorteio.innerHTML += `${amigos[i]} --> ${amigos[i + 1]}<br>` 
         }
-    } else {
-        alert('Por favor adiciona mais amigos para brincar.')  
     }
 
 
