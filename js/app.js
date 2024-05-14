@@ -21,6 +21,9 @@ function adicionar(){
     }
 
     amigo.value = '';
+
+    atualizarLista();
+    atualizarSorteio();
 }
 
 function sortear(){
@@ -40,6 +43,14 @@ function sortear(){
     } else {
         alert('Por favor adiciona mais amigos para brincar.')  
     }
+
+
+}
+
+function excluirAmigo(index) {
+    amigos.splice(index, 1);
+    atualizarLista();
+    atualizarSorteio();
 }
 
 function embaralha(lista) {
@@ -59,3 +70,38 @@ function reiniciar(){
     document.getElementById('lista-sorteio').innerHTML = '';
     document.getElementById('lista-amigos').innerHTML = '';
 }
+
+function atualizarSorteio() {
+    let sorteio = document.getElementById('lista-sorteio');
+    sorteio.innerHTML = '';
+}
+
+
+function atualizarLista() {
+    let lista = document.getElementById('lista-amigos');
+    lista.innerHTML = '';
+
+
+    for (let i = 0; i < amigos.length; i++) {
+        // Cria um elemento de parágrafo para cada amigo
+        let paragrafo = document.createElement('p');
+        paragrafo.textContent = amigos[i];
+       
+        // Adiciona um evento de clique para excluir o amigo
+        paragrafo.addEventListener('click', function() {
+            excluirAmigo(i);
+        });
+
+
+        // Adiciona o parágrafo à lista
+        lista.appendChild(paragrafo);
+    }
+}
+
+
+function reiniciar() {
+    amigos = [];
+    document.getElementById('lista-amigos').innerHTML = '';
+    document.getElementById('lista-sorteio').innerHTML = '';
+}
+
